@@ -256,6 +256,9 @@
                         <li>
                         <a href="{{ url ('/distuibutor')}}"><i class="fa fa-edit fa-fw"></i>Distributors Registration</a>
                         </li>
+                        <li>
+                          <a href="{{ url ('/new_PDF')}}"><i class="fa fa-edit fa-fw"></i> PDF Generator</a>
+                        </li>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>

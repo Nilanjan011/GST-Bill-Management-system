@@ -92,15 +92,15 @@ class Distributor extends Controller
         
     }
 
-    public function paidlist(){
+    // public function paidlist(){
         
-        $paiddata=(Distributo::where('payment_status','=',1)->get());
-        return view('paidlist', compact('paiddata'));
-    }
-    public function non_paidlist(){
-        $Notpaiddata=(Distributo::where('payment_status','=',0)->get());
-        return view('nonpaidlist', compact('Notpaiddata'));
-    } 
+    //     $paiddata=(Distributo::where('payment_status','=',1)->get());
+    //     return view('paidlist', compact('paiddata'));
+    // }
+    // public function non_paidlist(){
+    //     $Notpaiddata=(Distributo::where('payment_status','=',0)->get());
+    //     return view('nonpaidlist', compact('Notpaiddata'));
+    // } 
 
 
 }

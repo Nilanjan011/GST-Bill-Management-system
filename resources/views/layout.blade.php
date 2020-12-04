@@ -4,17 +4,16 @@
 <head>
 
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>@yield('title') </title>
 
-    
-
-    <!--b Core CSS - Include with every page -->
+     <!--b Core CSS - Include with every page -->
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}"/>
-
+    
     <link rel="stylesheet" href="{{asset('font-awesome/css/font-awesome.css')}}"/>
-
+    
     <!-- SB Admin CSS - Include with every page -->
     <link rel="stylesheet" href="{{asset('css/sb-admin.css')}}"/>
 {{-- @section('dashpic') --}}
@@ -34,7 +33,7 @@
 
     
     <!-- Core Scripts - Include with every page -->
-    {{-- <script src="{{asset('js/jquery-1.10.2.js')}}"></script> --}} 
+    {{-- <script src="{{asset('js/jquery-1.10.2.js')}}"></script>  --}}
     {{-- ---------------------dataTable jquery cdn---------------------- --}}
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>

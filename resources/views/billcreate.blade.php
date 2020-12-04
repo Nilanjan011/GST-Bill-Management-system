@@ -11,7 +11,7 @@
 {{-- {% block content%} --}}
     <div id="page-wrapper">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-12 col-md-12 col-12">
                 
                 
                 <div id="page" style="display: none;">
@@ -63,72 +63,76 @@
                             <input type="date" class="form-control" id="date" name="date" value="12/9/2020">
                         </div>
                     </div>
-                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                        <thead>
-                            <tr>
-                                <th class="text-center"> GST Type 5%.</th>
-                                <th class="text-center"> GST Type 12%</th>
-                                <th class="text-center"> GST Type 18%</th>
-                                <th class="text-center"> GST Type 28%</th>
-                            </tr>
-                        </thead>
-                        <tb>
-                            <tr class="odd gradeX">
-                                <td class="text-center">Enter Amount
-                                    <br><input type="text" id="am_GST5"  name="am_GST5" placeholder="Enter Amount">
-                                </td>
-                                <td class="text-center">Enter Amount
-                                    <br><input type="text" id="am_GST12" name="am_GST12" placeholder="Enter Amount">
-                                </td>
-                                <td class="text-center">Enter Amount
-                                    <br><input type="text" id="am_GST18" name="am_GST18" placeholder="Enter Amount" >
-                                </td>
-                                <td class="text-center">Enter Amount
-                                    <br><input type="text" id="am_GST28"  name="am_GST28" placeholder="Enter Amount">
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td class="text-center">CGST : <p id="5%CGST" name="5%CGST"></p> </td>
-                                <td class="text-center">CGST : <p id="12%CGST" name="12%CGST"></p></td>
-                                <td class="text-center">CGST : <p id="18%CGST" name="18%CGST"></p></td>
-                                <td class="text-center">CGST : <p id="28%CGST" name="28%CGST"></p></td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td class="text-center">SGST : <p id="5%SGST" name="5%SGST"></p> </td>
-                                <td class="text-center">SGST : <p id="12%SGST" name="12%SGST"></p></td>
-                                <td class="text-center">SGST : <p id="18%SGST" name="18%SGST"></p></td>
-                                <td class="text-center">SGST : <p id="28%SGST" name="28%SGST"></p></td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td class="text-center">Total GST : <p name="5%T_GST" id="5%T_GST"></p> </td>
-                                <td class="text-center">Total GST : <p name="12%T_GST" id="12%T_GST"></p></td>
-                                <td class="text-center">Total GST : <p name="18%T_GST" id="18%T_GST"></p></td>
-                                <td class="text-center">Total GST : <p name="28%T_GST" id="28%T_GST"></p></td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td class="text-center">Total Amount : <p id="5%T_amt"  name="5%T_amt" ></p> </td>
-                                <td class="text-center">Total Amount : <p id="12%T_amt" name="12%T_amt"></p></td>
-                                <td class="text-center">Total Amount : <p id="18%T_amt" name="18%T_amt"></p></td>
-                                <td class="text-center">Total Amount : <p id="28%T_amt" name="28%T_amt"></p></td>
-                            </tr>
-                        </tb>
-                    </table>
-                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                        <thead>
-                            <tr>
-                                <th class="text-center">Total Asscble Value</th>
-                                <th class="text-center">GST AMT</th>
-                                <th class="text-center">Grand Total</th>
-                            </tr>
-                        </thead>
-                        <td>
-                            <tr>
-                                <td class="text-center" id="T_A_value"></td>
-                                <td class="text-center"><p id="GST_amt"></p></td>
-                                <td class="text-center"><p id="G_total"></p></td>
-                            </tr>
-                        </td>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th class="text-center"> GST Type 5%.</th>
+                                    <th class="text-center"> GST Type 12%</th>
+                                    <th class="text-center"> GST Type 18%</th>
+                                    <th class="text-center"> GST Type 28%</th>
+                                </tr>
+                            </thead>
+                            <tb>
+                                <tr class="odd gradeX">
+                                    <td class="text-center">Enter Amount
+                                        <br><input type="text" id="am_GST5"  name="am_GST5" placeholder="Enter Amount">
+                                    </td>
+                                    <td class="text-center">Enter Amount
+                                        <br><input type="text" id="am_GST12" name="am_GST12" placeholder="Enter Amount">
+                                    </td>
+                                    <td class="text-center">Enter Amount
+                                        <br><input type="text" id="am_GST18" name="am_GST18" placeholder="Enter Amount" >
+                                    </td>
+                                    <td class="text-center">Enter Amount
+                                        <br><input type="text" id="am_GST28"  name="am_GST28" placeholder="Enter Amount">
+                                    </td>
+                                </tr>
+                                <tr class="odd gradeX">
+                                    <td class="text-center">CGST : <p id="5%CGST" name="5%CGST"></p> </td>
+                                    <td class="text-center">CGST : <p id="12%CGST" name="12%CGST"></p></td>
+                                    <td class="text-center">CGST : <p id="18%CGST" name="18%CGST"></p></td>
+                                    <td class="text-center">CGST : <p id="28%CGST" name="28%CGST"></p></td>
+                                </tr>
+                                <tr class="odd gradeX">
+                                    <td class="text-center">SGST : <p id="5%SGST" name="5%SGST"></p> </td>
+                                    <td class="text-center">SGST : <p id="12%SGST" name="12%SGST"></p></td>
+                                    <td class="text-center">SGST : <p id="18%SGST" name="18%SGST"></p></td>
+                                    <td class="text-center">SGST : <p id="28%SGST" name="28%SGST"></p></td>
+                                </tr>
+                                <tr class="odd gradeX">
+                                    <td class="text-center">Total GST : <p name="5%T_GST" id="5%T_GST"></p> </td>
+                                    <td class="text-center">Total GST : <p name="12%T_GST" id="12%T_GST"></p></td>
+                                    <td class="text-center">Total GST : <p name="18%T_GST" id="18%T_GST"></p></td>
+                                    <td class="text-center">Total GST : <p name="28%T_GST" id="28%T_GST"></p></td>
+                                </tr>
+                                <tr class="odd gradeX">
+                                    <td class="text-center">Total Amount : <p id="5%T_amt"  name="5%T_amt" ></p> </td>
+                                    <td class="text-center">Total Amount : <p id="12%T_amt" name="12%T_amt"></p></td>
+                                    <td class="text-center">Total Amount : <p id="18%T_amt" name="18%T_amt"></p></td>
+                                    <td class="text-center">Total Amount : <p id="28%T_amt" name="28%T_amt"></p></td>
+                                </tr>
+                            </tb>
+                        </table>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Total Asscble Value</th>
+                                    <th class="text-center">GST AMT</th>
+                                    <th class="text-center">Grand Total</th>
+                                </tr>
+                            </thead>
+                            <td>
+                                <tr>
+                                    <td class="text-center" id="T_A_value"></td>
+                                    <td class="text-center"><p id="GST_amt"></p></td>
+                                    <td class="text-center"><p id="G_total"></p></td>
+                                </tr>
+                            </td>
+                        </table>
+                    </div>
                     
                 </form>
                 <div id="err1"></div>

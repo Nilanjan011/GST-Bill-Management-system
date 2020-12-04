@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Distributo;
+// use App\Distributo;
 use App\RegisModel;
 class RegisController extends Controller
 {
@@ -39,17 +39,17 @@ class RegisController extends Controller
             
             $nam=RegisModel::where('email',$req->email)->value('name');
 
-            $paidcount=Distributo::where('payment_status','=',1)->count();
-            $Notpaidcount=Distributo::where('payment_status','=',0)->count();
+            // $paidcount=Distributo::where('payment_status','=',1)->count();
+            // $Notpaidcount=Distributo::where('payment_status','=',0)->count();
 
             // $paiddata=(DB::table('distributors')->where('payment_status','=',1)->get());
             // $Notpaiddata=(DB::table('distributors')->where('payment_status','=',0)->get());
 
             $req->session()->put("key",$nam);
-            $arr=["paid"=>$paidcount,"notpaid"=>$Notpaidcount];
+            // $arr=["paid"=>$paidcount,"notpaid"=>$Notpaidcount];
             // dd($req->session()->get("key")); //it's work
             if ($req->session()->has("key")) {
-              return view("home",compact("arr"));
+              return view("home");
             }
         }else {
             return redirect('/userlogin')->with('message','Account is Incorrect!');

@@ -36,10 +36,7 @@ use Illuminate\Support\Facades\Route;
 // Route::view('/','dash');
 Route::get('/', function(){
         if (Session::has('key')) {
-            $paidcount=(DB::table('distributors')->where('payment_status','=',1)->count());
-            $Notpaidcount=(DB::table('distributors')->where('payment_status','=',0)->count());
-            $arr=["paid"=>$paidcount,"notpaid"=>$Notpaidcount];
-            return view('home',compact('arr')); // if user login sucessfully goto home
+            return view('home'); // if user login sucessfully goto home
         }else {
             return view('dash'); // if user not login  goto dashboard
         }
@@ -59,8 +56,8 @@ Route::group(['middleware'=> ['admin']], function (){
         Route::view('/calculation','calculation');
         Route::view('/distuibutor','distuibutor');
         Route::post('/Distributor','Distributor@index');
-        Route::get('/paidlist','Distributor@paidlist');
-        Route::get('/non-paidlist','Distributor@non_paidlist');
+        // Route::get('/paidlist','Distributor@paidlist');
+        // Route::get('/non-paidlist','Distributor@non_paidlist');
 
         Route::get('/customer/list', 'Distributor@fetch_all_customer');
         Route::get('/customer/edit/{id}', 'Distributor@edit_customer_form')->name('customer.edit');
@@ -68,6 +65,8 @@ Route::group(['middleware'=> ['admin']], function (){
         //------------- Distributors end----------------------------------------------
         //------------- Bill siart ----------------------------------------------    
         Route::resource('bill','BillController');
+        Route::view('/new_PDF','new_PDF');
+        Route::post('pdf_date','BillController@pdf_date');
         Route::get('/PDFgen','BillController@PDFgen');
         // Route::get('/gen','BillController@gen');
         //------------- bill end----------------------------------------------

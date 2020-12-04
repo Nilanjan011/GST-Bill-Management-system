@@ -11,7 +11,7 @@
                 <div class="text-center" style=" margin: 30px;">
                     <h1 style="padding-top: 10px;">Welcome {{Session::get('key')}}</h1>
                 </div>
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-md-6" style="padding: 30px;" >
                         <div class="card p-5 bg-success" style="border-radius: 10px;border-right: groove;">
                             <div class="card-body text-center" style="padding: 30px;" >
@@ -30,7 +30,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

@@ -64,7 +64,7 @@
                                         <th>Email</th>
                                         <th>Registration Date</th>
                                         <th>User Status</th>
-                                        <th>Payment Status</th>
+                                        {{-- <th>Payment Status</th> --}}
                                         <th style="color: blue;">Update</th>
                                         <th style="color: red;">DELETE</th>
                                     </tr>
@@ -90,7 +90,7 @@
                                                @endif 
                                             @endif
                                         </td>
-                                        <td class="text-center">
+                                        {{-- <td class="text-center">
                                             @if ($item->payment_status == 1)
                                                 <div style="color: green">Paid</div> 
                                             @else
@@ -99,7 +99,7 @@
                                                 @endif
                                             @endif
                                 
-                                        </td>
+                                        </td> --}}
                                         <td class="text-center">
                                             <a href="{{ route('customer.edit',$item->id) }}" style="color: blue;">Edit</a>
                                         </td>

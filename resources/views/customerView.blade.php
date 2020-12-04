@@ -79,8 +79,8 @@
                         <label class="form-check-label" for="exampleRadios2">
                           Inactive
                         </label>
-                      </div>
-                      <div class="form-group form-check">
+                    </div>
+                    {{-- <div class="form-group form-check">
                         <label for="exampleInputEmail1">payment Status</label><br>
                         <input class="form-check-input" type="radio" name="payment[]" id="payment" value="1" @if ($id->payment_status == 1) checked @endif>
                         <label class="form-check-label" for="exampleRadios1">
@@ -91,8 +91,8 @@
                         <label class="form-check-label" for="exampleRadios2">
                           Not Paid
                         </label>
-                      </div>
-                    
+                    </div>
+                     --}}
                     <button type="submit" class="btn btn-lg btn-success">Submit</button>
                 </form>
                          <script>
