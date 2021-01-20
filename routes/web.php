@@ -65,8 +65,14 @@ Route::group(['middleware'=> ['admin']], function (){
         //------------- Distributors end----------------------------------------------
         //------------- Bill siart ----------------------------------------------    
         Route::resource('bill','BillController');
+        // -----------Report pdf start ------------------------
         Route::view('/new_PDF','new_PDF');
         Route::post('pdf_date','BillController@pdf_date');
+        // -----------Report pdf end ------------------------
+        // -----------Distributor pdf start ------------------------
+        Route::get('/distributor_pdf','BillController@Show_distributor_pdf');
+        Route::post('distributor_pdf','BillController@distributor_pdf');
+        // -----------Distributor pdf end ------------------------
         Route::get('/PDFgen','BillController@PDFgen');
         // Route::get('/gen','BillController@gen');
         //------------- bill end----------------------------------------------

@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title','Report PDF')
+@section('title','Distributor PDF')
 
  @section('ad')
     <x-header/>
@@ -11,7 +11,7 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Report PDF</h3>
+                        <h3 class="panel-title">Distributor PDF</h3>
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -31,16 +31,19 @@
                     <div class="panel-body">
         
                         <fieldset>
-                            <form action=" {{url('pdf_date')}} " method="post">
+                            <form action=" {{url('distributor_pdf')}} " method="post">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="from">From</label>
-                                    <input type="date" class="form-control" placeholder="from" id="from" name="from" required autofocus> 
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="TOTAL_AMOUNT"> To</label>
-                                    <input type="date" class="form-control" name="to" id="to" placeholder="To">   
+                                    <label for="name">Name</label>
+                                    <select class="form-control form-control-lg" id="name" name="name" onclick="top_name()">
+                                        <option value="">select</option>
+                                        @forelse ($Distributor as $item)
+                                        <option value=" {{$item->name}} ">{{$item->name}}</option>
+                                        
+                                        @empty
+                                            <option value="">No data found</option>
+                                        @endforelse
+                                    </select>
                                 </div>
                                 
                                 <button type="submit" class="btn btn-lg btn-success btn-block">PDF Generator</button>

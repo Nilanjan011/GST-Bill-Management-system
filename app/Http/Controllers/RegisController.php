@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 // use App\Distributo;
+use Auth;
 use App\RegisModel;
 class RegisController extends Controller
 {
@@ -33,7 +34,6 @@ class RegisController extends Controller
             'email'=>['required','email'],
             'password'=>'required | min:3 | max:20',
           ]);
-        
         $RegisModel=RegisModel::where('email',$req->email)->value('password');
         if( Hash::check($req->password,$RegisModel)){
             
@@ -53,10 +53,8 @@ class RegisController extends Controller
             }
         }else {
             return redirect('/userlogin')->with('message','Account is Incorrect!');
-
         }
 
     }
-
 
 }

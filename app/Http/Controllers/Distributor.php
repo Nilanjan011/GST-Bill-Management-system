@@ -28,7 +28,6 @@ class Distributor extends Controller
         $Distributor->date=$input['date'];
         $Distributor->user_status=$radio;
         $Distributor->phone=$input['phone'];
-        $Distributor->payment_status=0;
         $s=$Distributor->save();
         if ($s) {
             return redirect('/distuibutor')->with('message','suceessfull Registration!');
@@ -66,11 +65,9 @@ class Distributor extends Controller
             'address'=>'required | max:30',
             'date' =>'required | date',
             'radio[0]' => ['require' , 'in:0,1'],
-            'payment[0]' => ['require' , 'in:0,1'] 
         ]);
 
         $radio=$request->radio[0];
-        $payment=$request->payment[0];
         
         
       $ok=$id->update([
@@ -80,7 +77,7 @@ class Distributor extends Controller
                     'address'=>$request->address,
                     'date' =>$request->date,
                     'user_status' => $radio,
-                    'payment_status' => $payment
+    
     ]);
 
     //   $this->meesage('message','Customer updated successfully!');

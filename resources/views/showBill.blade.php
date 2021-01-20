@@ -51,47 +51,69 @@
                             <table class="table table-striped table-bordered table-hover display" id="example" >
                                 <thead class="thead-dark">
                                     <tr>
+                                        <th rowspan="2">Registration Date</th>
+                                        <th rowspan="2">Invoice No</th>
                                         <th rowspan="2">Distributors Name</th>
-                                        <th rowspan="2">Bill Number</th>
-                                        <th rowspan="2">Purchase Bill Date</th>
-                                        <th colspan="2">GST Type 5%</th>
-                                        <th colspan="2">GST Type 12%</th>
-                                        <th colspan="2">GST Type 18%</th>
-                                        <th colspan="2">GST Type 28%</th>
+                                        <th rowspan="2">GSTIN</th>
+                                        <th rowspan="2">State Code</th>
+                                        <th rowspan="2">Invice No</th>
+                                        <th class="text-center" colspan="4">GST Type 5%</th>
+                                        <th class="text-center" colspan="4">GST Type 12%</th>
+                                        <th class="text-center" colspan="4">GST Type 18%</th>
+                                        <th class="text-center" colspan="4">GST Type 28%</th>
                                         <th rowspan="2">Grand Total</th>
                                         {{-- <th rowspan="2">View</th> --}}
                                         <th rowspan="2">Edit</th>
                                         <th rowspan="2">Delete</th>
                                     </tr>
                                     <tr>
-                                        <th>Amount</th>
-                                        <th>GST</th>
-                                        <th>Amount</th>
-                                        <th>GST</th>
-                                        <th>Amount</th>
-                                        <th>GST</th>
-                                        <th>Amount</th>
-                                        <th>GST</th>
+                                        <th>Taxable Value</th>
+                                        <th>CGST 2.5%</th>
+                                        <th>SGST 2.5%</th>
+                                        <th>GST 5%</th>
+                                        <th>Taxable Value</th>
+                                        <th>CGST 6%</th>
+                                        <th>SGST 6%</th>
+                                        <th>GST 12%</th>
+                                        <th>Taxable Value</th>
+                                        <th>CGST 9%</th>
+                                        <th>SGST 9%</th>
+                                        <th>GST 18%</th>
+                                        <th>Taxable Value</th>
+                                        <th>CGST 14%</th>
+                                        <th>SGST 14%</th>
+                                        <th>GST 28%</th>
                                     </tr>
                                     </thead>
                                 <tbody>
                                     @foreach ($bill as $item)
                                     
                                     <tr class="odd gradeX">
+                                        <td class="text-center"> {{$item->registration_date}} </td>
+                                        <td class="text-center"> {{$item->invoice_no}} </td>
                                         <td class="text-center"> {{$item->name}} </td>
-                                        <td class="text-center"> {{$item->billno}} </td>
-                                        <td class="text-center"> {{$item->date}} </td>
+                                        <td class="text-center"> {{$item->gstin}} </td>
+                                        <td class="text-center"> {{$item->state_code}} </td>
+                                        <td class="text-center"> {{$item->invoice_date}} </td>
                                     {{-- --------------------GST 5%------------------------------------ --}}
                                         <td class="text-center"> {{$item->gst5e_amt}} </td>
+                                        <td class="text-center"> {{$item->gst5cgst}} </td>
+                                        <td class="text-center"> {{$item->gst5sgst}} </td>
                                         <td class="text-center">{{$item->gst5t_gst}} </td>
                                     {{-- -- --------------------GST 12%------------------------------------ --}}
                                         <td class="text-center"> {{$item->gst12e_amt}} </td>
+                                        <td class="text-center"> {{$item->gst12cgst}} </td>
+                                        <td class="text-center"> {{$item->gst12sgst}} </td>
                                         <td class="text-center"> {{$item->gst12t_gst}} </td>
                                     {{-- -- --------------------GST 18%------------------------------------ --}}
                                         <td class="text-center"> {{$item->gst18e_amt}} </td>
+                                        <td class="text-center"> {{$item->gst18cgst}} </td>
+                                        <td class="text-center"> {{$item->gst18sgst}} </td>
                                         <td class="text-center"> {{$item->gst18t_gst}} </td>
                                     {{-- -- --------------------GST 28%------------------------------------ --}}
                                         <td class="text-center"> {{$item->gst28e_amt}} </td>
+                                        <td class="text-center"> {{$item->gst28cgst}} </td>
+                                        <td class="text-center"> {{$item->gst28sgst}} </td>
                                         <td class="text-center"> {{$item->gst28t_gst}} </td>
                                     <td class="text-center"> {{$item->gst12t_amt+$item->gst5t_amt+ $item->gst18t_amt+$item->gst28t_amt}} </td>
                                         <td class="text-center">

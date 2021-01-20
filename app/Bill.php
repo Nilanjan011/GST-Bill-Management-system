@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Bill extends Model
 {
-    protected $fillable=[ 'name', 'billno', 'date'];
+    protected $fillable=[ 'name', 'gstin', 'registration_date'];
 }

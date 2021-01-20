@@ -40,12 +40,15 @@ class BillController extends Controller
     public function store(Request $req)
     {
         $req->validate([  
-            'name'=>['required','string', 'max:25'],
-            'bill_no'=>'required | min:3 | max:50',
-            'date'=>'required ',
+            'name'=>['required','string', 'max:50'],
+            'gstin'=>'required | min:3 | max:50',
+            'invoice_date'=>'required ',
+            'invoice_no'=>'required ',
+            'registration_date'=>'required ',
+            'state_code'=>'required ',
         ]);
         if ($req->am_GST5==null && $req->am_GST12==null && $req->am_GST18==null && $req->am_GST28==null) {
-            return redirect()->back()->with('message','please enter minimum one amount');
+            return back()->with('message','please enter minimum one amount');
         }
         if($req->am_GST5){
             $am_GST5=$req->am_GST5;
@@ -117,8 +120,11 @@ class BillController extends Controller
 
         $bill = new Bill;
         $bill->name=$req->name;
-        $bill->billno=$req->bill_no;
-        $bill->date=$req->date;
+        $bill->gstin=$req->gstin;
+        $bill->registration_date=$req->registration_date;
+        $bill->invoice_date=$req->invoice_date;
+        $bill->invoice_no=$req->invoice_no;
+        $bill->state_code=$req->state_code;
     //--------------------GST 5%----------------------------------------------
         $bill->gst5e_amt=$am_GST5;               
         $bill->gst5cgst= round($CGST_5_value,2);            
@@ -184,10 +190,13 @@ class BillController extends Controller
     public function update(Request $req, Bill $bill)
     {
         $req->validate([  
-            'name'=>['required','string', 'max:25'],
-            'bill_no'=>'required | min:3 | max:50',
-            'date'=>'required ',
-        ]);
+            'name'=>['required','string', 'max:50'],
+            'gstin'=>'required | min:3 | max:50',
+            'invoice_date'=>'required',
+            'invoice_no'=>'required',
+            'registration_date'=>'required',
+            'state_code'=>'required',
+       ]);
         if ($req->am_GST5==null && $req->am_GST12==null && $req->am_GST18==null && $req->am_GST28==null) {
             return redirect()->back()->with('message','please enter minimum one amount');
         }
@@ -259,10 +268,13 @@ class BillController extends Controller
             $total28_amt=0;
         }
 
-        $ok=$bill->update([
-            'name' => $req->name,
-            'billno' => $req->bill_no,
-            'date'=>$req->date,
+        $ok=$bill->update([ 
+            'name'=>$req->name,
+            'gstin'=>$req->gstin,
+            'invoice_date'=>$req->invoice_date,
+            'invoice_no'=>$req->invoice_no,
+            'registration_date'=>$req->registration_date,
+            'state_code'=>$req->state_code,
         //---------------GST 5%-----------------------------------------------
             'gst5e_amt'=>$am_GST5,    
             'gst5cgst'=> round($CGST_5_value,2),
@@ -321,9 +333,8 @@ class BillController extends Controller
             'from'=>['required','date_format:Y-m-d'],
             'to'=>'required | date_format:Y-m-d',
         ]);
-        $bill=Bill::whereBetween('date',[$req->from, $req->to])->get();
+        $bill=Bill::whereBetween('created_at',[$req->from, $req->to])->get();
         
-        // dd($bill->count());
         if ($bill->count()==0) {
             return redirect()->back()->with('msg','No Data found! please check again');
         }
@@ -332,6 +343,28 @@ class BillController extends Controller
         return $pdf->download('All_Bills.pdf');           
 
     }
+
+    function Show_distributor_pdf(){
+        $Distributor = Distributo::select('name')->get();
+        return view('distributor_pdf', compact('Distributor'));
+    }
+
+    function distributor_pdf(Request $req){
+        $req->validate([  
+            'name'=>['required','string','max:30'],
+        ]);
+        $bill=Bill::where('name',$req->name)->get();
+        
+        if ($bill->count()==0) {
+            return back()->with('msg','No Data found! please check again');
+        }
+        
+        $pdf = PDF::loadView('download_PDF', compact('bill'));
+        return $pdf->download('Distributor.pdf');           
+
+    }
+
+
     public function gen(){
         $bill = Bill::toBase()->get();
         return view('download_PDF', compact('bill'));

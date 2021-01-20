@@ -48,16 +48,32 @@
                           <input type="text" class="form-control" name="name" id="name" value=" {{$bill->name}} " placeholder="name" required>
                         </div>
                         <div class="form-group">
-                          <label for="exampleInputPassword1" >Bill Number</label>
-                          
-                          <input type="text" class="form-control" id="bill_no" name="bill_no" value=" {{$bill->billno}}" placeholder="Bill Number" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="date" class="col-2 colform-label">Date</label>
-                            <div class="col-10">
-                                <input  class="form-control" id="date" name="date" value=" {{$bill->date}}">
-                            </div>
-                        </div>
+                            <label for="exampleInputPassword1">GSTIN</label>                     
+                            <input type="text" class="form-control" id="gstin" name="gstin" value=" {{$bill->gstin}} " required>
+                          </div>
+                          <div class="form-group">
+                              <label for="date" class="col-2 colform-label"> Invoice Date</label>
+                              <div class="col-10">
+                                  <input type="text" class="form-control" id="invoice_date" name="invoice_date" required value=" {{$bill->invoice_date}} ">
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label  class="col-2 colform-label"> Invoice No</label>
+                              <div class="col-10">
+                                  <input type="text" class="form-control" id="invoice_no" name="invoice_no" required value=" {{$bill->invoice_no}} ">
+                              </div>
+                          </div>
+      
+                          <div class="form-group">
+                              <label for="date" class="col-2 colform-label"> Registration Date</label>
+                              <div class="col-10">
+                                  <input type="text" class="form-control" id="registration_date" name="registration_date" value=" {{$bill->registration_date}} " >
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label for="exampleInputPassword1">State Code</label>                     
+                              <input type="text" class="form-control" id="state_code" name="state_code" value="{{$bill->state_code}}" required>
+                          </div>
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
@@ -138,15 +154,15 @@
 
                              function form_submit() {
                                 var name= document.getElementById("name").value;
-                                var bill_no= document.getElementById("bill_no").value;
-                                var date= document.getElementById("date").value;
+                                var gstin= document.getElementById("gstin").value;
+                                var registration_date= document.getElementById("registration_date").value;
                                 var am_GST5=  parseFloat(document.getElementById("am_GST5").value);
                                 var am_GST12= parseFloat(document.getElementById("am_GST12").value);
                                 var am_GST18= parseFloat(document.getElementById("am_GST18").value);
                                 var am_GST28= parseFloat(document.getElementById("am_GST28").value);
                                 var sub=0;
                                 var sub1=0;
-                                if(name!='' && bill_no!='' && date!=''){
+                                if(name!='' && gstin!='' && registration_date!=''){
                                     sub=1;
                                     
                                 }else{

@@ -40,28 +40,43 @@
                 <form action="{{route('bill.store')}}" id="myForm" method="POST">
                     @csrf
                     <div class="form-group">
-                        <label for="name">Distributor Name</label>
+                        <label for="name">Distributor Name & Address</label>
                         <select class="form-control form-control-lg" id="name" name="name" onclick="top_name()">
                             <option value="">select</option>
                             @forelse ($Distributor as $item)
-                            <option value=" {{$item->name}} ">{{$item->name}}</option>
+                            <option value=" {{$item->name}} ">{{$item->name}}, {{$item->address}}</option>
                             
                             @empty
                                 <option value="">No data found</option>
                             @endforelse
                         </select>
-                      {{-- <input type="text" class="form-control" name="name" id="name" placeholder="name" required> --}}
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputPassword1">Bill Number</label>
-                      
-                      <input type="text" class="form-control" id="bill_no" name="bill_no" placeholder="Bill Number" required>
+                      <label for="exampleInputPassword1">GSTIN</label>                     
+                      <input type="text" class="form-control" id="gstin" name="gstin" placeholder="GST IN" required>
                     </div>
                     <div class="form-group">
-                        <label for="date" class="col-2 colform-label">Date</label>
+                        <label for="date" class="col-2 colform-label"> Invoice Date</label>
                         <div class="col-10">
-                            <input type="date" class="form-control" id="date" name="date" value="12/9/2020">
+                            <input type="date" class="form-control" id="invoice_date" name="invoice_date" required value= "12/5/2020">
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-2 colform-label"> Invoice No</label>
+                        <div class="col-10">
+                            <input type="text" class="form-control" id="invoice_no" name="invoice_no" required placeholder="Enter invoice No">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date" class="col-2 colform-label"> Registration Date</label>
+                        <div class="col-10">
+                            <input type="text" class="form-control" id="registration_date" name="registration_date" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">State Code</label>                     
+                        <input type="text" class="form-control" id="state_code" name="state_code" value="21" required>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -140,42 +155,50 @@
                 <button onclick="cal()" class="btn btn-success">Total Sum</button>
                 <button type="submit" onclick="form_submit()" class="btn btn-primary">Submit</button>
                     <script>
+                        var total_sum_press;
+                        var today = new Date().toLocaleDateString();
+                        document.getElementById("registration_date").value=today;
 
                         function top_name(){
-                            document.getElementById("top_name").innerHTML='gbcfjahfgbhguih';
                             document.getElementById("top_name").innerHTML=document.getElementById('name').value;
                         }
 
                         function form_submit() {
-                            var name= document.getElementById("name").value;
-                            var bill_no= document.getElementById("bill_no").value;
-                            var date= document.getElementById("date").value;
-                            var am_GST5=  parseFloat(document.getElementById("am_GST5").value);
-                            var am_GST12= parseFloat(document.getElementById("am_GST12").value);
-                            var am_GST18= parseFloat(document.getElementById("am_GST18").value);
-                            var am_GST28= parseFloat(document.getElementById("am_GST28").value);
-                            var sub=0;
-                            var sub1=0;
-                            if(name!='' && bill_no!='' && date!=''){
-                                sub=1;
-                                
+                            if ( total_sum_press==1)
+                            {
+                                var name= document.getElementById("name").value;
+                                var gstin= document.getElementById("gstin").value;
+                                var invoice_date= document.getElementById("invoice_date").value;
+                                var am_GST5=  parseFloat(document.getElementById("am_GST5").value);
+                                var am_GST12= parseFloat(document.getElementById("am_GST12").value);
+                                var am_GST18= parseFloat(document.getElementById("am_GST18").value);
+                                var am_GST28= parseFloat(document.getElementById("am_GST28").value);
+                                var sub=0;
+                                var sub1=0;
+                                if(name!='' && gstin!='' && invoice_date!=''){
+                                    sub=1;
+                                    
+                                }else{
+                                    document.getElementById("err1").innerHTML='<h4 style="color:red;"> Name, GSTiN and Registration Date is required</h4>'
+                                }
+                                if(!isNaN(am_GST5) || !isNaN(am_GST12) || !isNaN(am_GST18) || !isNaN(am_GST28   )){
+                                    sub1=1
+                                }else{
+                                    sub1=0
+                                    document.getElementById("err").innerHTML='<h4 style="color:red;"> please fill any one Amount</h4>'
+                                }
+                                if (sub==1 && sub1==1) {
+                                    console.log( am_GST18 );
+                                    document.getElementById("myForm").submit();
+                                    
+                                }
                             }else{
-                                document.getElementById("err1").innerHTML='<h4 style="color:red;"> Name, Bill NO. and Date is required</h4>'
-                            }
-                            if(!isNaN(am_GST5) || !isNaN(am_GST12) || !isNaN(am_GST18) || !isNaN(am_GST28   )){
-                                sub1=1
-                            }else{
-                                sub1=0
-                                document.getElementById("err").innerHTML='<h4 style="color:red;"> please fill any one Amount</h4>'
-                            }
-                            if (sub==1 && sub1==1) {
-                                console.log( am_GST18 );
-                                document.getElementById("myForm").submit();
-                                
+                                document.getElementById("err").innerHTML='<h4 style="color:red;"> please click Total sum</h4>'
                             }
                         }
 
                         function cal() {
+                            total_sum_press=1;
                             var T_A_value=0;
                             var GST_value=0;
                             var G_total=0;
@@ -188,11 +211,21 @@
                                 var select=5/2;
             
                                 var CGSTvalue=(am_GST5*select)/100;
-
+                                CGSTvalue=parseFloat(CGSTvalue.toFixed(2));
+                                // var CGSTvalue = CGSTvalue1.toFixed(2);
+                                // var num = 45555555555555555.6;
+                                // var num = 45645;
+                                // num = num.toString(); //If it's not already a String
+                                // num = num.slice(0, (num.indexOf("."))+3); //With 3 exposing the hundredths place
+                                // a=parseFloat(a.toFixed(2));
                                 var SGSTvalue=(am_GST5*select)/100;
-
+                                SGSTvalue=parseFloat(SGSTvalue.toFixed(2));
+                        
                                 var total5GST=(CGSTvalue)+(SGSTvalue);
+                                total5GST=parseFloat(total5GST.toFixed(2));
+
                                 var total5_amt=parseFloat(am_GST5) + parseFloat(total5GST);
+                                total5_amt=parseFloat(total5_amt.toFixed(2));
 
                                 document.getElementById("5%CGST").innerHTML=CGSTvalue;
                                 document.getElementById("5%SGST").innerHTML=SGSTvalue;
@@ -213,12 +246,16 @@
                                 var select=12/2;
                                    
                                 var CGSTvalue=(am_GST12*select)/100;
+                                CGSTvalue=parseFloat(CGSTvalue.toFixed(2));
                                    
                                 var SGSTvalue=(am_GST12*select)/100;
+                                SGSTvalue=parseFloat(SGSTvalue.toFixed(2));
                                    
                                 total12GST=(CGSTvalue)+(SGSTvalue);
-                                total12_amt=parseFloat(am_GST12) + parseFloat(total12GST);
+                                total12GST=parseFloat(total12GST.toFixed(2));
 
+                                total12_amt=parseFloat(am_GST12) + parseFloat(total12GST);
+                                total12_amt=parseFloat(total12_amt.toFixed(2));
 
                                 document.getElementById("12%CGST").innerHTML=  CGSTvalue;
                                 document.getElementById("12%SGST").innerHTML=SGSTvalue;
@@ -238,12 +275,16 @@
                                 var select=18/2;
             
                                 var CGSTvalue=(am_GST18*select)/100;
+                                CGSTvalue=parseFloat(CGSTvalue.toFixed(2));
 
                                 var SGSTvalue=(am_GST18*select)/100;
+                                SGSTvalue=parseFloat(SGSTvalue.toFixed(2));
 
                                 total18GST=(CGSTvalue)+(SGSTvalue);
-                                total18_amt=parseFloat(am_GST18) + parseFloat(total18GST);
+                                total18GST=parseFloat(total18GST.toFixed(2));
 
+                                total18_amt=parseFloat(am_GST18) + parseFloat(total18GST);
+                                total18_amt=parseFloat(total18_amt.toFixed(2));
 
                                 document.getElementById("18%CGST").innerHTML=  CGSTvalue;
                                 document.getElementById("18%SGST").innerHTML=SGSTvalue;
@@ -265,10 +306,17 @@
 
                                 var select=28/2;
 
-                                var CGSTvalue=(am_GST28*select)/100;               
-                                var SGSTvalue=(am_GST28*select)/100;               
+                                var CGSTvalue=(am_GST28*select)/100;
+                                CGSTvalue=parseFloat(CGSTvalue.toFixed(2));
+
+                                var SGSTvalue=(am_GST28*select)/100;
+                                SGSTvalue=parseFloat(SGSTvalue.toFixed(2));
+
                                 total28GST=(CGSTvalue)+(SGSTvalue);
+                                total28GST=parseFloat(total28GST.toFixed(2));
+
                                 total28_amt=parseFloat(am_GST28) + parseFloat(total28GST);
+                                total28_amt=parseFloat(total28_amt.toFixed(2));
 
 
                                 document.getElementById("28%CGST").innerHTML=  CGSTvalue;

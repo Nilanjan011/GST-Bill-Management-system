@@ -10,7 +10,7 @@
     <title>@yield('title') </title>
 
      <!--b Core CSS - Include with every page -->
-    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}"/>  
     
     <link rel="stylesheet" href="{{asset('font-awesome/css/font-awesome.css')}}"/>
     

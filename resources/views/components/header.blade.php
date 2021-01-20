@@ -202,7 +202,7 @@
         </li>
         <!-- /.dropdown -->
         <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <a class="dropdown-toggle" data-toggle="dropdown">
                 <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
@@ -256,9 +256,6 @@
                         <li>
                         <a href="{{ url ('/distuibutor')}}"><i class="fa fa-edit fa-fw"></i>Distributors Registration</a>
                         </li>
-                        <li>
-                          <a href="{{ url ('/new_PDF')}}"><i class="fa fa-edit fa-fw"></i> PDF Generator</a>
-                        </li>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
@@ -275,23 +272,23 @@
                     <!-- /.nav-second-level -->
                 </li>                
                 <li>
-                    <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-wrench fa-fw"></i> PDF Generator<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="panels-wells.html">Panels and Wells</a>
+                            <a href="{{ url ('/new_PDF')}}"><i class="fa fa-user fa-fw"></i>Report PDF</a>
                         </li>
                         <li>
-                            <a href="buttons.html">Buttons</a>
+                            <a href="{{ url ('/distributor_pdf')}}"><i class="fa fa-user fa-fw"></i>Distributor PDF</a>
+                        </li>
+                        {{-- <li>
+                            <a href="#">Notifications</a>
                         </li>
                         <li>
-                            <a href="notifications.html">Notifications</a>
+                            <a href="#">Typography</a>
                         </li>
                         <li>
-                            <a href="typography.html">Typography</a>
-                        </li>
-                        <li>
-                            <a href="grid.html">Grid</a>
-                        </li>
+                            <a href="#">Grid</a>
+                        </li> --}}
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
@@ -307,7 +304,7 @@
                         <li>
                             <a href="#">Third Level <span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
-                                <li>
+                                {{-- <li>
                                     <a href="#">Third Level Item</a>
                                 </li>
                                 <li>
@@ -318,7 +315,7 @@
                                 </li>
                                 <li>
                                     <a href="#">Third Level Item</a>
-                                </li>
+                                </li> --}}
                             </ul>
                             <!-- /.nav-third-level -->
                         </li>
@@ -329,10 +326,10 @@
                     <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="blank.html">Blank Page</a>
+                            <a href="#">Blank Page</a>
                         </li>
                         <li>
-                            <a href="login.html">Login Page</a>
+                            <a href="#">Login Page</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->

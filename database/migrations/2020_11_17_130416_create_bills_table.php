@@ -16,8 +16,11 @@ class CreateBillsTable extends Migration
         Schema::create('bills', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('billno');
-            $table->date("date");
+            $table->string('gstin');
+            $table->string('invoice_no');
+            $table->string('state_code');
+            $table->date("registration_date");
+            $table->date("invoice_date");
             $table->string('gst5e_amt');
             $table->string('gst5cgst');
             $table->string('gst5sgst');
