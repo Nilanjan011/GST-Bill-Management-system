@@ -74,7 +74,7 @@ Route::group(['middleware'=> ['admin']], function (){
         Route::post('distributor_pdf','BillController@distributor_pdf');
         // -----------Distributor pdf end ------------------------
         Route::get('/PDFgen','BillController@PDFgen');
-        // Route::get('/gen','BillController@gen');
+        Route::get('/gen','BillController@gen');
         //------------- bill end----------------------------------------------
         Route::get('/logout','adminloginController@logout');
         
@@ -87,6 +87,7 @@ Route::delete('/customer/{id}', 'Distributor@delete_customer')->name('customer.d
 
 Route::view('/userlogin','userlogin');
 Route::view('/regis','registration');
+
 
 Route::post('/resitration','RegisController@index');
 Route::post('/user','RegisController@userin');

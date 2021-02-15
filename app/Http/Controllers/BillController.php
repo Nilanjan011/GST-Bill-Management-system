@@ -344,7 +344,7 @@ class BillController extends Controller
 
     }
 
-    function Show_distributor_pdf(){
+    function Show_distributor_pdf(){ // tamplate file rander
         $Distributor = Distributo::select('name')->get();
         return view('distributor_pdf', compact('Distributor'));
     }
