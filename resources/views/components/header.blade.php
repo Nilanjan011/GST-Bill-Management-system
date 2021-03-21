@@ -248,7 +248,7 @@
                     <a href="{{url ('/calculation')}}"><i class="fa fa-edit fa-fw"></i> calculation</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-edit fa-fw"></i> Forms<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-edit fa-fw"></i>Report Registration<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="{{ route('bill.create')}}"><i class="fa fa-edit fa-fw"></i>Purchase Bill Register</a>
@@ -260,7 +260,7 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-table fa-fw""></i> Tables<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-table fa-fw""></i> Bill Management<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="{{ route (('bill.index')) }} "><i class="fa fa-table fa-fw"></i>Show Bill</a>
@@ -272,7 +272,7 @@
                     <!-- /.nav-second-level -->
                 </li>                
                 <li>
-                    <a href="#"><i class="fa fa-wrench fa-fw"></i> PDF Generator<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-wrench fa-fw"></i> PDF Report<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="{{ url ('/new_PDF')}}"><i class="fa fa-user fa-fw"></i>Report PDF</a>
@@ -292,7 +292,7 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
-                <li>
+                {{-- <li>
                     <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
@@ -304,8 +304,8 @@
                         <li>
                             <a href="#">Third Level <span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
-                                {{-- <li>
-                                    <a href="#">Third Level Item</a>
+                                {{-- <li> --}}
+                                    {{-- <a href="#">Third Level Item</a>
                                 </li>
                                 <li>
                                     <a href="#">Third Level Item</a>
@@ -321,7 +321,7 @@
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
-                </li>
+                {{-- </li>
                 <li>
                     <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
@@ -333,7 +333,7 @@
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
-                </li>
+                </li> --}}
             </ul>
             <!-- /#side-menu -->
         </div>

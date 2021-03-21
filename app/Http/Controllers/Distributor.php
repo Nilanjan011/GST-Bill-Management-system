@@ -9,7 +9,8 @@ class Distributor extends Controller
 {
     function index(Request $req){
         $req->validate([  
-            'email'=>['required','email'],
+            'email'=>['required','email','unique:distributors'],
+            'gstin'=>['required','unique:distributors'],
             'name'=>['required', 'max:25' ,'string'],
             'phone'=>'required | min:10',
             'address'=>'required | max:30',
@@ -23,6 +24,7 @@ class Distributor extends Controller
         
         $Distributor = new Distributo;
         $Distributor->name=$input['name'];
+        $Distributor->gstin=$input['gstin'];
         $Distributor->email=$input['email'];
         $Distributor->address=$input['address'];
         $Distributor->date=$input['date'];
@@ -30,7 +32,7 @@ class Distributor extends Controller
         $Distributor->phone=$input['phone'];
         $s=$Distributor->save();
         if ($s) {
-            return redirect('/distuibutor')->with('message','suceessfull Registration!');
+            return redirect('/customer/list')->with('message','Suceessfull Registration!');
         }
 
     }
@@ -53,13 +55,14 @@ class Distributor extends Controller
         
       $id->delete();
     
-      return redirect()->back()->with('message','deleted successfully!');
+      return redirect()->back()->with('message','Deleted Successfully!');
     }
     public function edit_customer_form_submit(Request $request, Distributo $id)
     {
     
         $request->validate([  
             'email'=>['required','email'],
+            'gstin'=>['required'],
             'name'=>['required', 'max:25' ,'string'],
             'phone'=>'required | min:10',
             'address'=>'required | max:30',
@@ -71,20 +74,21 @@ class Distributor extends Controller
         
         
       $ok=$id->update([
-                    'name' => $request->name,
-                    'email' => $request->email,
-                    'phone'=>$request->phone,
-                    'address'=>$request->address,
-                    'date' =>$request->date,
-                    'user_status' => $radio,
+        'name' => $request->name,
+        'gstin'=>$request->gstin,
+        'email' => $request->email,
+        'phone'=>$request->phone,
+        'address'=>$request->address,
+        'date' =>$request->date,
+        'user_status' => $radio,
     
     ]);
 
     //   $this->meesage('message','Customer updated successfully!');
         if ($ok) {
-            return redirect('/customer/list')->with('message','suceessfull update!');
+            return redirect('/customer/list')->with('message','Suceessfull Update!');
         } else {
-            return redirect()->back()->with('message','suceessfullsomething update!');
+            return redirect()->back()->with('message','Something Wrong! Try Again');
         }
         
     }

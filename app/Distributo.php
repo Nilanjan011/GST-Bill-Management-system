@@ -10,5 +10,5 @@ class Distributo extends Model
     protected $table="Distributors";
     public $timestamps = true;
 
-    protected $fillable=[ 'name', 'email', 'phone','address','date','user_status','payment_status'];
+    protected $fillable=[ 'name', 'email','gstin', 'phone','address','date','user_status','payment_status'];
 }

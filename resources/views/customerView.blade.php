@@ -48,6 +48,11 @@
                       <input type="text" class="form-control" name="name" placeholder="name" value="{{ $id->name}}">
                     </div>
                     <div class="form-group">
+                        <label for="exampleInputPassword1">GSTiN</label>
+                        
+                        <input type="text" class="form-control" id="gstin" name="gstin" value="{{ $id->gstin}}" placeholder="GSTIN">
+                      </div>
+                    <div class="form-group">
                       <label for="exampleInputPassword1">Phone</label>
                       
                       <input type="text" class="form-control" id="phone" name="phone" value="{{ $id->phone}}" placeholder="Phone">
@@ -101,15 +106,16 @@
                             function vali(){
 
                                 var name= document.getElementById("name").value;
+                                var gstin= document.getElementById("gstin").value;
                                 var phone= document.getElementById("phone").value;
                                 var email= document.getElementById("email").value;
                                 var address= document.getElementById("address").value;
                                 var date= document.getElementById("date").value;
                                 var radio= document.getElementById("radio").value;
 
-                                if( name=="" || phone=="" || email=="" || address=="" || date=="" || radio=="")
+                                if( name=="" || gstin=="" || phone=="" || email=="" || address=="" || date=="" || radio=="")
                                 {
-                                    document.getElementById("err").innerHTML= "<span> fill correctly</span>";
+                                    document.getElementById("err").innerHTML="<span>All field are required</span>";
                                     return false;
                                 }
                             }

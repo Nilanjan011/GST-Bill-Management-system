@@ -62,6 +62,7 @@ Route::group(['middleware'=> ['admin']], function (){
         Route::get('/customer/list', 'Distributor@fetch_all_customer');
         Route::get('/customer/edit/{id}', 'Distributor@edit_customer_form')->name('customer.edit');
         Route::put('/customer/edit/{id}', 'Distributor@edit_customer_form_submit')->name('customer.update');
+        Route::delete('/customer/{id}', 'Distributor@delete_customer')->name('customer.delete');
         //------------- Distributors end----------------------------------------------
         //------------- Bill siart ----------------------------------------------    
         Route::resource('bill','BillController');
@@ -81,7 +82,6 @@ Route::group(['middleware'=> ['admin']], function (){
 });
 
 //------------- Distributors ----------------------------------------------
-Route::delete('/customer/{id}', 'Distributor@delete_customer')->name('customer.delete');
 // Route::get('/customer/{customer}', 'Distributor@view_single_customer')->name('customer.view');
 //------------- Distributors end----------------------------------------------
 

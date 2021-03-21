@@ -43,21 +43,26 @@
                     <div class="form-group">
                         <label for="name">Full Name</label>
                        
-                      <input type="text" class="form-control" name="name" placeholder="name">
+                      <input type="text" class="form-control" name="name" placeholder="name" value="{{old('name')}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">GSTIN</label>
+                        
+                        <input type="text" class="form-control" id="gstin" name="gstin" placeholder="GSTIN" value="{{old('gstin')}}">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Phone</label>
                       
-                      <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone">
+                      <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" value="{{old('phone')}}">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email</label>
                        
-                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" value="{{old('email')}}" placeholder="Enter email">
                     </div>
                     <div class="form-group">
                         <label for="address">Address</label>
-                        <textarea name="address" id="address" placeholder="Address" rows="3" class="form-control"></textarea>
+                        <textarea name="address" id="address" placeholder="Address" rows="3" class="form-control" >{{old('address')}}</textarea>
                        
                     </div>
                     <div class="form-group">
@@ -88,15 +93,16 @@
                             function vali(){
 
                                 var name= document.getElementById("name").value;
+                                var gstin= document.getElementById("gstin").value;
                                 var phone= document.getElementById("phone").value;
                                 var email= document.getElementById("email").value;
                                 var address= document.getElementById("address").value;
                                 var date= document.getElementById("date").value;
                                 var radio= document.getElementById("radio").value;
 
-                                if( name=="" || phone=="" || email=="" || address=="" || date=="" || radio=="")
+                                if( name=="" || gstin=="" || phone=="" || email=="" || address=="" || date=="" || radio=="")
                                 {
-                                    document.getElementById("err").innerHTML= "<span> fill correctly</span>";
+                                    document.getElementById("err").innerHTML= "<span>All field are required</span>";
                                     return false;
                                 }
                             }

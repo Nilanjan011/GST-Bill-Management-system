@@ -18,227 +18,123 @@
     }
     .page{  
         text-align: center;
-
         margin: 3%;
-/* //rotate left 
-        transform: rotate(90deg);
+        font-size: 75%;
+/* //rotate left  */
+        /* transform: rotate(90deg);
         -webkit-transform: rotate(90deg);
         -moz-transform: rotate(90deg); */
-    }
+    }        
 </style>
 </head>
 <body>
     <div id="tp">
         <div class="page">
-            <table style="font-size: 12px;">
-                <thead>
-                    <tr>
-                        <th rowspan="2">Registration Date</th>
-                        <th rowspan="2">Invoice No</th>
-                        <th rowspan="2">Distributors Name</th>
-                        <th rowspan="2">GSTIN</th>
-                        <th rowspan="2">State Code</th>
-                        <th rowspan="2">Invice No</th>
-                        <th colspan="4">GST Type 5%</th>
-                        {{-- <th colspan="4">GST Type 12%</th>
-                        <th colspan="4">GST Type 18%</th>
-                        <th colspan="4">GST Type 28%</th>
-                        <th rowspan="2">Grand Total</th> --}}
-                    </tr>
-                    <tr>
-                        <th>Taxable Value</th>
-                        <th>CGST 2.5%</th>
-                        <th>SGST 2.5%</th>
-                        <th>GST 5%</th>
-                        {{-- <th>Taxable Value</th>
-                        <th>CGST 6%</th>
-                        <th>SGST 6%</th>
-                        <th>GST 12%</th>
-                        <th>Taxable Value</th>
-                        <th>CGST 9%</th>
-                        <th>SGST 9%</th>
-                        <th>GST 18%</th>
-                        <th>Taxable Value</th>
-                        <th>CGST 14%</th>
-                        <th>SGST 14%</th>
-                        <th>GST 28%</th> --}}
-                    </tr>
-                    </thead>
-                    @php
-                        $total_Amount=0;
-                    @endphp 
-                <tbody>
-                    @foreach ($bill as $item)  
-                    <tr class="odd gradeX">
-                        <td class="text-center"> {{$item->registration_date}} </td>
-                        <td class="text-center"> {{$item->invoice_no}} </td>
-                        <td class="text-center"> {{$item->name}} </td>
-                        <td class="text-center"> {{$item->gstin}} </td>
-                        <td class="text-center"> {{$item->state_code}} </td>
-                        <td class="text-center"> {{$item->invoice_date}} </td>
-                   {{-- --------------------GST 5%------------------------------------ --}}
-                        <td class="text-center"> {{$item->gst5e_amt}} </td>
-                        <td class="text-center"> {{$item->gst5cgst}} </td>
-                        <td class="text-center"> {{$item->gst5sgst}} </td>
-                        <td class="text-center">{{$item->gst5t_gst}} </td>
-                    {{-- -- --------------------GST 12%------------------------------------ --}}
-                        {{-- <td class="text-center"> {{$item->gst12e_amt}} </td>
-                        <td class="text-center"> {{$item->gst12cgst}} </td>
-                        <td class="text-center"> {{$item->gst12sgst}} </td>
-                        <td class="text-center"> {{$item->gst12t_gst}} </td> --}}
-                    {{-- -- --------------------GST 18%------------------------------------ --}}
-                        {{-- <td class="text-center"> {{$item->gst18e_amt}} </td>
-                        <td class="text-center"> {{$item->gst18cgst}} </td>
-                        <td class="text-center"> {{$item->gst18sgst}} </td>
-                        <td class="text-center"> {{$item->gst18t_gst}} </td> --}}
-                    {{-- -- --------------------GST 28%------------------------------------ --}}
-                        {{-- <td class="text-center"> {{$item->gst28e_amt}} </td>
-                        <td class="text-center"> {{$item->gst28cgst}} </td>
-                        <td class="text-center"> {{$item->gst28sgst}} </td>
-                        <td class="text-center"> {{$item->gst28t_gst}} </td>--}}
-                    {{-- <td class="text-center"> {{$item->gst12t_amt+$item->gst5t_amt+ $item->gst18t_amt+$item->gst28t_amt}} </td>  --}}
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
-{{-- -------------------------GST 12%-------------------------------------------- --}}
-<div id="tp">
-    <div class="page">
-        <table style="font-size: 12px;">
-            <thead>
+            <table>
+                  <tr>
+                    <th>SL no.</th>
+                    <th>Reg. Date</th>
+                    <th>Invoice No</th>
+                    <th>Invice Date</th>
+                    <th>GSTIN</th>
+                    <th>State Code</th>
+                    <th colspan="3">PartyName & Address</th>
+                    <th>Total Tax</th>
+                    <th>Round off</th>
+                    <th>Grand Total</th>
+                  </tr>
+                @php
+                  $i=1;
+                  $total_Amount=0;
+                @endphp
+                @foreach ($bill as $item)
                 <tr>
-                    <th rowspan="2">Registration Date</th>
-                    <th rowspan="2">Invoice No</th>
-                    <th rowspan="2">Distributors Name</th>
-                    <th rowspan="2">GSTIN</th>
-                    <th rowspan="2">State Code</th>
-                    <th rowspan="2">Invice No</th>
+                    <td style="text-align: center;" rowspan="9">{{$i++}}</td>
+                    <td style="text-align: center;"> {{$item->registration_date}} </td>
+                    <td style="text-align: center;"> {{$item->invoice_no}} {{$item->invoice_date}}  </td>
+                    <td style="text-align: center;"> {{$item->name}} </td>
+                    <td style="text-align: center;"> {{$item->gstin}}</td>
+                    <td style="text-align: center;"> {{$item->state_code}} </td>
+                    <td style="text-align: center;" colspan="3">{{$item->invoice_no}}</td>
+                    <td style="text-align: center;" rowspan="9"> {{$item->gst12t_gst+$item->gst5t_gst+ $item->gst18t_gst+$item->gst28t_gst}} </td> 
+                    <td style="text-align: center;" rowspan="9">{{$item->operator}}{{$item->round_Off}}</td>
+                    <td style="text-align: center;" rowspan="9">{{$item->F_total}}</td>
+                    {{-- grand_all_total --}}
+                </tr>
+                <tr>
+                    <td colspan="8">_</td>
+                </tr>
+                @php
+                    $total_Amount=$total_Amount+($item->gst12t_amt+$item->gst5t_amt+ $item->gst18t_amt+$item->gst28t_amt);
+                @endphp 
+                <tr>
+                    <th colspan="4">GST Type 5%</th>
                     <th colspan="4">GST Type 12%</th>
                 </tr>
                 <tr>
                     <th>Taxable Value</th>
+                    <th>CGST 2.5%</th>
+                    <th>SGST 2.5%</th>
+                    <th>GST 5%</th> 
+
+                    <th>Taxable Value</th>
                     <th>CGST 6%</th>
                     <th>SGST 6%</th>
-                    <th>GST 12%</th>
-                </tr>
-                </thead> 
-            <tbody>
-                @foreach ($bill as $item)  
-                <tr class="odd gradeX">
-                    <td class="text-center"> {{$item->registration_date}} </td>
-                    <td class="text-center"> {{$item->invoice_no}} </td>
-                    <td class="text-center"> {{$item->name}} </td>
-                    <td class="text-center"> {{$item->gstin}} </td>
-                    <td class="text-center"> {{$item->state_code}} </td>
-                    <td class="text-center"> {{$item->invoice_date}} </td>
-                {{-- -- --------------------GST 12%------------------------------------ --}}
-                    <td class="text-center"> {{$item->gst12e_amt}} </td>
-                    <td class="text-center"> {{$item->gst12cgst}} </td>
-                    <td class="text-center"> {{$item->gst12sgst}} </td>
-                    <td class="text-center"> {{$item->gst12t_gst}} </td>
-                </tr>                
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-</div>
-
-{{-- -------------------------GST 18%-------------------------------------------- --}}
-<div id="tp">
-    <div class="page">
-        <table style="font-size: 12px;">
-            <thead>
-                <tr>
-                    <th rowspan="2">Registration Date</th>
-                    <th rowspan="2">Invoice No</th>
-                    <th rowspan="2">Distributors Name</th>
-                    <th rowspan="2">GSTIN</th>
-                    <th rowspan="2">State Code</th>
-                    <th rowspan="2">Invice No</th>
-                    <th colspan="4">GST Type 18%</th>
+                    <th>GST 12%</th> 
                 </tr>
                 <tr>
-                    <th>Taxable Value</th>
-                    <th>CGST 9%</th>
-                    <th>SGST 9%</th>
-                    <th>GST 18%</th>
-                </tr>
-                </thead> 
-            <tbody>
-                @foreach ($bill as $item)  
-                <tr class="odd gradeX">
-                    <td class="text-center"> {{$item->registration_date}} </td>
-                    <td class="text-center"> {{$item->invoice_no}} </td>
-                    <td class="text-center"> {{$item->name}} </td>
-                    <td class="text-center"> {{$item->gstin}} </td>
-                    <td class="text-center"> {{$item->state_code}} </td>
-                    <td class="text-center"> {{$item->invoice_date}} </td>
-                     
-                {{-- -- --------------------GST 18%------------------------------------ --}}
-                    <td class="text-center"> {{$item->gst18e_amt}} </td>
-                    <td class="text-center"> {{$item->gst18cgst}} </td>
-                    <td class="text-center"> {{$item->gst18sgst}} </td>
-                    <td class="text-center"> {{$item->gst18t_gst}} </td>
-                </tr>                
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-</div>
-
-{{-- -------------------------GST 28%-------------------------------------------- --}}
-<div id="tp">
-    <div class="page">
-        <table style="font-size: 12px;">
-            <thead>
-                <tr>
-                    <th rowspan="2">Registration Date</th>
-                    <th rowspan="2">Invoice No</th>
-                    <th rowspan="2">Distributors Name</th>
-                    <th rowspan="2">GSTIN</th>
-                    <th rowspan="2">State Code</th>
-                    <th rowspan="2">Invice No</th>
-                    <th colspan="4">GST Type 28%</th>
-                    <th rowspan="2">Grand Total <br> (5%+12%+18%+28%)</th>
-                </tr>
-                <tr>
-                    <th>Taxable Value</th>
-                    <th>CGST 14%</th>
-                    <th>SGST 14%</th>
-                    <th>GST 28%</th>
-                </tr>
-                </thead> 
-            <tbody>
-                @foreach ($bill as $item)  
-                <tr class="odd gradeX">
-                    <td class="text-center"> {{$item->registration_date}} </td>
-                    <td class="text-center"> {{$item->invoice_no}} </td>
-                    <td class="text-center"> {{$item->name}} </td>
-                    <td class="text-center"> {{$item->gstin}} </td>
-                    <td class="text-center"> {{$item->state_code}} </td>
-                    <td class="text-center"> {{$item->invoice_date}} </td>
-                     
+                     {{-- --------------------GST 5%------------------------------------ --}}
+                     <td style="text-align: center;"> {{$item->gst5e_amt}} </td>
+                     <td style="text-align: center;"> {{$item->gst5cgst}} </td>
+                     <td style="text-align: center;"> {{$item->gst5sgst}} </td>
+                     <td style="text-align: center;">{{$item->gst5t_gst}} </td>
+                 {{-- -- --------------------GST 12%------------------------------------ --}}
+                     <td style="text-align: center;"> {{$item->gst12e_amt}}</td>
+                     <td style="text-align: center;"> {{$item->gst12cgst}} </td>
+                     <td style="text-align: center;"> {{$item->gst12sgst}} </td>
+                     <td style="text-align: center;"> {{$item->gst12t_gst}}</td>
+                   </tr>
+                   <tr>
+                        <td colspan="8">_</td>
+                    </tr>
+                       <tr>
+                           <th colspan="4">GST Type 18%</th>
+                           <th colspan="4">GST Type 28%</th>
+                       </tr>
+                       <tr>
+                           <th>Taxable Value</th>
+                           <th>CGST 9%</th>
+                           <th>SGST 9%</th>
+                           <th>GST 18%</th>
+                           <th>Taxable Value</th>
+                           <th>CGST 14%</th>
+                           <th>SGST 14%</th>
+                           <th>GST 28%</th>
+                       </tr>
+             {{-- -- --------------------GST 18%------------------------------------ --}}
+                        <tr>
+                             <td style="text-align: center;"> {{$item->gst18e_amt}} </td>
+                             <td style="text-align: center;"> {{$item->gst18cgst}} </td>
+                             <td style="text-align: center;"> {{$item->gst18sgst}} </td>
+                             <td style="text-align: center;"> {{$item->gst18t_gst}}</td>
               {{-- -- --------------------GST 28%------------------------------------ --}}
-                    <td class="text-center"> {{$item->gst28e_amt}} </td>
-                    <td class="text-center"> {{$item->gst28cgst}} </td>
-                    <td class="text-center"> {{$item->gst28sgst}} </td>
-                    <td class="text-center"> {{$item->gst28t_gst}} </td>
-                {{-- ---------------------Grand Total-------------------------------------------- --}}
-                    <td class="text-center"> {{$item->gst12t_amt+$item->gst5t_amt+ $item->gst18t_amt+$item->gst28t_amt}} </td> 
-                </tr>
-                @php
-                    $total_Amount=$total_Amount+($item->gst12t_amt+$item->gst5t_amt+ $item->gst18t_amt+$item->gst28t_amt);
-                @endphp                
+                            <td style="text-align: center;"> {{$item->gst28e_amt}} </td>
+                            <td style="text-align: center;"> {{$item->gst28cgst}} </td>
+                            <td style="text-align: center;"> {{$item->gst28sgst}} </td>
+                            <td style="text-align: center;"> {{$item->gst28t_gst}} </td>
+                        </tr>
+                        <tr>
+                            <td colspan="12">_</td>
+                        </tr>
+                        <tr>
+                            <th colspan="6">Grand Total including 1% tax</th>
+                            <th colspan="6">{{$item->grand_all_total}}</th>
+                        </tr>
                 @endforeach
-            </tbody>
-        </table>
-        <br>
-        <h4>Total Grand Amount:  {{$total_Amount}} </h4>
+            </table>
+            {{-- <h4>Grand ALL Total:{{$total_Amount}} </h4> --}}
+        </div>
     </div>
-</div>
-
 </body>
 </html>
 

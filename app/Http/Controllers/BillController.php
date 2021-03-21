@@ -52,14 +52,12 @@ class BillController extends Controller
         }
         if($req->am_GST5){
             $am_GST5=$req->am_GST5;
-            
-            $select=5/2;
 
-            $CGST_5_value=($am_GST5*$select)/100;
+            $CGST_5_value=$req->CGST_5_hidden;
 
-            $SGST_5_value=($am_GST5*$select)/100;
-            $total5GST=($CGST_5_value)+($SGST_5_value);
-            $total5_amt=$am_GST5 + $total5GST;
+            $SGST_5_value=$req->SGST_5_hidden;
+            $total5GST=$req->t_gst_5_hidden;
+            $total5_amt=$req->t_amt_5_hidden;
         }else{
             $am_GST5=0;
             $CGST_5_value=0;
@@ -69,13 +67,12 @@ class BillController extends Controller
         }
         if($req->am_GST12){
             $am_GST12=$req->am_GST12;
-            $select=12/2;
 
-            $CGST_12_value=($am_GST12*$select)/100;
+            $CGST_12_value=$req->CGST_12_hidden;
 
-            $SGST_12_value=($am_GST12*$select)/100;
-            $total12GST=($SGST_12_value)+($CGST_12_value);
-            $total12_amt=$am_GST12 + $total12GST;
+            $SGST_12_value=$req->SGST_12_hidden;
+            $total12GST=$req->t_gst_12_hidden;
+            $total12_amt=$req->t_amt_12_hidden;
         }else{
             $am_GST12=0;
             $CGST_12_value=0;
@@ -86,13 +83,12 @@ class BillController extends Controller
 
         if($req->am_GST18){
             $am_GST18=$req->am_GST18;
-            $select=18/2;
 
-            $CGST_18_value=($am_GST18*$select)/100;
+            $CGST_18_value=$req->CGST_18_hidden;
 
-            $SGST_18_value=($am_GST18*$select)/100;
-            $total18GST=($SGST_18_value)+($CGST_18_value);
-            $total18_amt=$am_GST18 + $total18GST;
+            $SGST_18_value=$req->SGST_18_hidden;
+            $total18GST=$req->t_gst_18_hidden;
+            $total18_amt=$req->t_amt_18_hidden;
         }else{
             $am_GST18=0;
             $CGST_18_value=0;
@@ -103,13 +99,12 @@ class BillController extends Controller
 
         if($req->am_GST28){
             $am_GST28=$req->am_GST28;
-            $select=28/2;
 
-            $CGST_28_value=($am_GST28*$select)/100;
+            $CGST_28_value=$req->CGST_28_hidden;
 
-            $SGST_28_value=($am_GST28*$select)/100;
-            $total28GST=($SGST_28_value)+($CGST_28_value);
-            $total28_amt=$am_GST28 + $total28GST;
+            $SGST_28_value=$req->SGST_28_hidden;
+            $total28GST=$req->t_gst_28_hidden;
+            $total28_amt=$req->t_amt_28_hidden;
         }else{
             $am_GST28=0;
             $CGST_28_value=0;
@@ -127,28 +122,43 @@ class BillController extends Controller
         $bill->state_code=$req->state_code;
     //--------------------GST 5%----------------------------------------------
         $bill->gst5e_amt=$am_GST5;               
-        $bill->gst5cgst= round($CGST_5_value,2);            
-        $bill->gst5sgst= round($SGST_5_value,2);         
-        $bill->gst5t_gst=round($total5GST,2);          
-        $bill->gst5t_amt=round($total5_amt,2);                 
+        $bill->gst5cgst= $CGST_5_value;            
+        $bill->gst5sgst= $SGST_5_value;         
+        $bill->gst5t_gst=$total5GST;          
+        $bill->gst5t_amt=$total5_amt;                 
     //--------------------GST 12%----------------------------------------------
-        $bill->gst12e_amt=round($am_GST12,2);     
-        $bill->gst12cgst= round($CGST_12_value,2);
-        $bill->gst12sgst= round($SGST_12_value,2);
-        $bill->gst12t_gst=round($total12GST,2);   
-        $bill->gst12t_amt=round($total12_amt,2);  
+        $bill->gst12e_amt=$am_GST12;     
+        $bill->gst12cgst= $CGST_12_value;
+        $bill->gst12sgst= $SGST_12_value;
+        $bill->gst12t_gst=$total12GST;   
+        $bill->gst12t_amt=$total12_amt;  
     //--------------------GST 18%----------------------------------------------
-        $bill->gst18e_amt=round($am_GST18,2);     
-        $bill->gst18cgst= round($CGST_18_value,2);
-        $bill->gst18sgst= round($SGST_18_value,2);
-        $bill->gst18t_gst=round($total18GST,2);   
-        $bill->gst18t_amt=round($total18_amt,2);  
+        $bill->gst18e_amt=$am_GST18;     
+        $bill->gst18cgst= $CGST_18_value;
+        $bill->gst18sgst= $SGST_18_value;
+        $bill->gst18t_gst=$total18GST;   
+        $bill->gst18t_amt=$total18_amt;  
     //============GST 28%-------------------------------------------------
-        $bill->gst28e_amt=round($am_GST28,2);     
-        $bill->gst28cgst= round($CGST_28_value,2);
-        $bill->gst28sgst= round($SGST_28_value,2);
-        $bill->gst28t_gst=round($total28GST,2);   
-        $bill->gst28t_amt=round($total28_amt,2);  
+        $bill->gst28e_amt=$am_GST28;     
+        $bill->gst28cgst= $CGST_28_value;
+        $bill->gst28sgst= $SGST_28_value;
+        $bill->gst28t_gst=$total28GST;   
+        $bill->gst28t_amt=$total28_amt;
+    //-------------------------------------------------------------------------
+        $bill->G_total=$req->G_total_hidden;                  
+        $bill->operator=$req->operator;                                   
+        $bill->round_Off=$req->round_Off;                                  
+        $bill->F_total=$req->F_total_hidden;                        
+        $bill->grand_all_total=$req->grand_all_total_hidden;
+
+    // "T_A_value_hidden" => "5204.56"
+//   "GST_amt_hidden" => "1273.95"
+//   "G_total_hidden" => "6478.51"
+//   "operator" => "+"
+//   "round_Off" => "0.49"
+//   "F_total_hidden" => "6479"  pdf er grand total
+//   "grand_all_total_hidden" => "6543.79"
+
         $s=$bill->save();
         if ($s) {
             return redirect('bill')->with('message','successfully inserted');
@@ -187,8 +197,9 @@ class BillController extends Controller
      * @param  \App\Bill  $bill
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $req, Bill $bill)
+    public function update(Request $req,Bill $bill)
     {
+        // dd($bill->id);
         $req->validate([  
             'name'=>['required','string', 'max:50'],
             'gstin'=>'required | min:3 | max:50',
@@ -202,14 +213,12 @@ class BillController extends Controller
         }
         if($req->am_GST5){
             $am_GST5=$req->am_GST5;
-            
-            $select=5/2;
 
-            $CGST_5_value=($am_GST5*$select)/100;
+            $CGST_5_value=$req->CGST_5_hidden;
 
-            $SGST_5_value=($am_GST5*$select)/100;
-            $total5GST=($CGST_5_value)+($SGST_5_value);
-            $total5_amt=$am_GST5 + $total5GST;
+            $SGST_5_value=$req->SGST_5_hidden;
+            $total5GST=$req->t_gst_5_hidden;
+            $total5_amt=$req->t_amt_5_hidden;
         }else{
             $am_GST5=0;
             $CGST_5_value=0;
@@ -219,13 +228,12 @@ class BillController extends Controller
         }
         if($req->am_GST12){
             $am_GST12=$req->am_GST12;
-            $select=12/2;
 
-            $CGST_12_value=($am_GST12*$select)/100;
+            $CGST_12_value=$req->CGST_12_hidden;
 
-            $SGST_12_value=($am_GST12*$select)/100;
-            $total12GST=($SGST_12_value)+($CGST_12_value);
-            $total12_amt=$am_GST12 + $total12GST;
+            $SGST_12_value=$req->SGST_12_hidden;
+            $total12GST=$req->t_gst_12_hidden;
+            $total12_amt=$req->t_amt_12_hidden;
         }else{
             $am_GST12=0;
             $CGST_12_value=0;
@@ -236,13 +244,12 @@ class BillController extends Controller
 
         if($req->am_GST18){
             $am_GST18=$req->am_GST18;
-            $select=18/2;
 
-            $CGST_18_value=($am_GST18*$select)/100;
+            $CGST_18_value=$req->CGST_18_hidden;
 
-            $SGST_18_value=($am_GST18*$select)/100;
-            $total18GST=($SGST_18_value)+($CGST_18_value);
-            $total18_amt=$am_GST18 + $total18GST;
+            $SGST_18_value=$req->SGST_18_hidden;
+            $total18GST=$req->t_gst_18_hidden;
+            $total18_amt=$req->t_amt_18_hidden;
         }else{
             $am_GST18=0;
             $CGST_18_value=0;
@@ -253,13 +260,12 @@ class BillController extends Controller
 
         if($req->am_GST28){
             $am_GST28=$req->am_GST28;
-            $select=28/2;
 
-            $CGST_28_value=($am_GST28*$select)/100;
+            $CGST_28_value=$req->CGST_28_hidden;
 
-            $SGST_28_value=($am_GST28*$select)/100;
-            $total28GST=($SGST_28_value)+($CGST_28_value);
-            $total28_amt=$am_GST28 + $total28GST;
+            $SGST_28_value=$req->SGST_28_hidden;
+            $total28GST=$req->t_gst_28_hidden;
+            $total28_amt=$req->t_amt_28_hidden;
         }else{
             $am_GST28=0;
             $CGST_28_value=0;
@@ -267,46 +273,52 @@ class BillController extends Controller
             $total28GST=0;
             $total28_amt=0;
         }
-
-        $ok=$bill->update([ 
+        
+        // $ok=Bill::where('id',$bill)->update([ // it's also work same like below. But before use, remove 'Bill' in update function. 'public function update(Request $req, $bill)' 
+        $ok=$bill->where('id',$bill->id)->update([
             'name'=>$req->name,
             'gstin'=>$req->gstin,
-            'invoice_date'=>$req->invoice_date,
             'invoice_no'=>$req->invoice_no,
-            'registration_date'=>$req->registration_date,
             'state_code'=>$req->state_code,
+            'registration_date'=>$req->registration_date,
+            'invoice_date'=>$req->invoice_date,
         //---------------GST 5%-----------------------------------------------
             'gst5e_amt'=>$am_GST5,    
-            'gst5cgst'=> round($CGST_5_value,2),
-            'gst5sgst'=> round($SGST_5_value,2),
-            'gst5t_gst'=>round($total5GST,2),
-            'gst5t_amt'=>round($total5_amt,2),  
+            'gst5cgst'=> $CGST_5_value,
+            'gst5sgst'=> $SGST_5_value,
+            'gst5t_gst'=>$total5GST,
+            'gst5t_amt'=>$total5_amt,  
         //---------------GST 12%-----------------------------------------------
             'gst12e_amt'=>$am_GST12,    
-            'gst12cgst '=> round($CGST_12_value,2),
-            'gst12sgst '=> round($SGST_12_value,2),
-            'gst12t_gst'=> round($total12GST,2),
-            'gst12t_amt'=> round($total12_amt,2),  
+            'gst12cgst'=> $CGST_12_value,
+            'gst12sgst'=> $SGST_12_value,
+            'gst12t_gst'=> $total12GST,
+            'gst12t_amt'=> $total12_amt,  
         //---------------GST 18%-----------------------------------------------
             'gst18e_amt'=>$am_GST18,  
-            'gst18cgst '=>round($CGST_18_value,2),
-            'gst18sgst '=>round($SGST_18_value,2),
-            'gst18t_gst'=>round($total18GST,2),
-            'gst18t_amt'=>round($total18_amt,2),  
+            'gst18cgst'=>$CGST_18_value,
+            'gst18sgst'=>$SGST_18_value,
+            'gst18t_gst'=>$total18GST,
+            'gst18t_amt'=>$total18_amt,  
         //---------------GST 28%-----------------------------------------------
             'gst28e_amt'=>$am_GST28,  
-            'gst28cgst '=>round($CGST_28_value,2),
-            'gst28sgst '=>round($SGST_28_value,2),
-            'gst28t_gst'=>round($total28GST,2),
-            'gst28t_amt'=>round($total28_amt,2),  
-
+            'gst28cgst'=>$CGST_28_value,
+            'gst28sgst'=>$SGST_28_value,
+            'gst28t_gst'=>$total28GST,
+            'gst28t_amt'=>$total28_amt,  
+        //-----------------------------------------------------------------------
+            'G_total'=> $req->G_total_hidden,                
+            'operator'=> $req->operator,                     
+            'round_Off'=>$req->round_Off,                  
+            'F_total'=>$req->F_total_hidden,                
+            'grand_all_total'=>$req->grand_all_total_hidden,
         ]);
 
 //   $this->meesage('message','Customer updated successfully!');
         if ($ok) {
             return redirect('bill')->with('message','suceessfull update!');
         } else {
-            return redirect()->back()->with('message','suceessfullsomething update!');
+            return redirect()->back()->with('message','something wrong! TRy Again');
         }
     }
 
@@ -358,7 +370,7 @@ class BillController extends Controller
         if ($bill->count()==0) {
             return back()->with('msg','No Data found! please check again');
         }
-        
+        // return view('new_download_pdf', compact('bill'));
         $pdf = PDF::loadView('download_PDF', compact('bill'));
         return $pdf->download('Distributor.pdf');           
 
