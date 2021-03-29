@@ -61,7 +61,7 @@ class Distributor extends Controller
     {
     
         $request->validate([  
-            'email'=>['required','email'],
+            'email'=>['required','email','unique:distributors,email,'.$id->id],
             'gstin'=>['required'],
             'name'=>['required', 'max:25' ,'string'],
             'phone'=>'required | min:10',
