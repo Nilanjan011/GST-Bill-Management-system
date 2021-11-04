@@ -61,10 +61,8 @@
                                         <th class="text-center" colspan="4">GST Type 12%</th>
                                         <th class="text-center" colspan="4">GST Type 18%</th>
                                         <th class="text-center" colspan="4">GST Type 28%</th>
-                                        <th rowspan="2">Total Tax</th>
-                                        <th rowspan="2">Round off</th>
                                         <th rowspan="2">Grand Total</th>
-                                        <th rowspan="2">Grand Total Including 1% Tax</th>
+                                        {{-- <th rowspan="2">View</th> --}}
                                         <th rowspan="2">Edit</th>
                                         <th rowspan="2">Delete</th>
                                     </tr>
@@ -117,10 +115,7 @@
                                         <td class="text-center"> {{$item->gst28cgst}} </td>
                                         <td class="text-center"> {{$item->gst28sgst}} </td>
                                         <td class="text-center"> {{$item->gst28t_gst}} </td>
-                                    <td class="text-center"> {{$item->gst12t_gst+$item->gst5t_gst+ $item->gst18t_gst+$item->gst28t_gst}} </td>
-                                        <td class="text-center"> @if ($item->round_Off)  {{ $item->operator}}{{$item->round_Off}}  @else 0 @endif</td>
-                                        <td class="text-center">{{ $item->F_total}}</td>
-                                        <th>{{ $item->grand_all_total}}</th>
+                                    <td class="text-center"> {{$item->gst12t_amt+$item->gst5t_amt+ $item->gst18t_amt+$item->gst28t_amt}} </td>
                                         <td class="text-center">
                                             <a href="{{ route('bill.edit',$item->id) }}" class="btn btn-sm btn-outline-danger py-0">Edit</a>
                                         </td>
@@ -136,10 +131,9 @@
                                 </tbody>
                             </table>
                         </div>
-                        {{-- button for download PDF all information  --}}
-                        {{-- <div class="text-center">
+                        <div class="text-center">
                             <a href=" {{url('PDFgen')}} "><button  class="btn btn-warning btn-lg">PDF Generate</button></a>
-                        </div> --}}
+                        </div>
                     </div>
                     <!-- /.panel-body -->
                 </div>

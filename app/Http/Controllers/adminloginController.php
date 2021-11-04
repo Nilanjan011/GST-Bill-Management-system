@@ -33,6 +33,9 @@ class adminloginController extends Controller
 
     function logout(Request $req){
         $req->session()->forget("key");
+        $req->session()->invalidate();
+
+        $req->session()->regenerateToken();
         return redirect("/");
     }
 }

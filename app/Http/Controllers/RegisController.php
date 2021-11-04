@@ -49,7 +49,8 @@ class RegisController extends Controller
             // $arr=["paid"=>$paidcount,"notpaid"=>$Notpaidcount];
             // dd($req->session()->get("key")); //it's work
             if ($req->session()->has("key")) {
-              return view("home");
+                $req->session()->regenerate();
+                return view("home");
             }
         }else {
             return redirect('/userlogin')->with('message','Account is Incorrect!');
